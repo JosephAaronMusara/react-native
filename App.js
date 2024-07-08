@@ -1,33 +1,36 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View,ScrollView } from 'react-native';
+import { useState } from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 
 export default function App() {
-
-  const [person, setPerson] = useState([
-    {name:'Joseph', key :1},
-    {name:'Aaron', key :2},
-    {name:'Tariroyashe', key :3},
-    {name:'Anthony', key :4},
-    {name:'Tawanda', key :5},
-    {name:'Munyaradzi', key :6},
-    {name:'Mukudzei', key :7},
-    {name:'Travin', key :8},
+  const [people, setPeople] = useState([
+    { name: "Joseph", key: 1 },
+    { name: "Aaron", key: 2 },
+    { name: "Tariroyashe", key: 3 },
+    { name: "Anthony", key: 4 },
+    { name: "Tawanda", key: 5 },
+    { name: "Munyaradzi", key: 6 },
+    { name: "Mukudzei", key: 7 },
+    { name: "Travin", key: 8 },
   ]);
- 
+
   return (
     <View style={styles.container}>
 
-      <ScrollView>
+      <FlatList
+      //It automatically extracts the key. But in case we have a different field name for key, e.g id, we use:
+      keyExtractor={(item)=>(item.key)}
+      data = {people}
+      renderItem={({item}) => (<Text style={styles.item}>{item.name}</Text>)}
 
-      {person.map((item) => (
+      />
+      
+      {/* <ScrollView>
+        {person.map((item) => (
           <View key={item.key}>
             <Text style={styles.item}>{item.name}</Text>
           </View>
-        )
-      )}
-
-      </ScrollView>
-      
+        ))}
+      </ScrollView> */}
     </View>
   );
 }
@@ -35,17 +38,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop : 40,
+    backgroundColor: "#fff",
+    paddingTop: 40,
     paddingHorizontal: 20,
     // alignItems: 'center',
     // justifyContent: 'center',
-
   },
-  item:{
-    marginTop:24,
-    padding:30,
-    backgroundColor:'aqua',
-    fontSize : 24,
-  }
+  item: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: "aqua",
+    fontSize: 24,
+  },
 });
