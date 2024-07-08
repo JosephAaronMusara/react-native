@@ -311,6 +311,7 @@ export default function App() {
 
       <FlatList
       //It automatically extracts the key. But in case we have a different field name for key, e.g id, we use:
+     // numColumns={2}
       keyExtractor={(item)=>(item.id)}
       data = {people}
       renderItem={({item}) => (<Text style={styles.item}>{item.name}</Text>)}
